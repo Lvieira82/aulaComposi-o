@@ -1,10 +1,10 @@
 package entities;
 
 import java.util.ArrayList;
+import entities.enums.WorkerLevel;
 import java.util.Calendar;
 import java.util.List;
 
-import entities.enums.WorkerLevel;
 
 public class Worker {
 	private String name;
@@ -12,16 +12,16 @@ public class Worker {
 	private Double baseSalary;
 	
 	private Department department;
-	private List<HourContract> contracts = new ArrayList<>();
+	private List<HourContract> contracts = new ArrayList<>(); //criação da lista de contrato
 	
 	public Worker() {
 		
 	}
 
-	public Worker(String name, WorkerLevel level, Double baseSalary, Department department) {
+	public Worker(String name, Double baseSalary, Department department) {
 	
 		this.name = name;
-		this.level = level;
+	
 		this.baseSalary = baseSalary;
 		this.department = department;
 	}
@@ -69,15 +69,15 @@ public class Worker {
 	public void removeContract(HourContract  contract) {
 		contracts.remove(contract);
 	}
-	public double income(int year, int month) {
-		double sum = baseSalary;
-		Calendar cal = Calendar.getInstance();
-		for(HourContract c : contracts) {
-			cal.setTime(c.getDate());
-			int c_year = cal.get(Calendar.YEAR);
-			int c_month = cal.get(Calendar.MONTH);
-			if (year == c_year && month == c_month) {
-				sum += c.totalValue();
+	public double income(int year, int month) { //método que faz a comparação pra saber se mês e ano batem.
+		double sum = baseSalary; //soma salário base
+		Calendar cal = Calendar.getInstance(); //utiliza a classe calendário
+		for(HourContract c : contracts) { //cria um laco pra conferirr cada contrato na lista de contratos
+			cal.setTime(c.getDate()); // pega a variavel criada e pega sua data
+			int c_year = cal.get(Calendar.YEAR);// para checar o ano extrai só ele e compara com o paramêtro digitado.
+			int c_month = 1 + cal.get(Calendar.MONTH);// o mesmo para o mês
+			if (year == c_year && month == c_month) {// feita a copmparação se bater igual.
+				sum += c.totalValue();// a soma é executada
 			}
 		}
 		return sum;
