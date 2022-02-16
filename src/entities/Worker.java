@@ -18,7 +18,7 @@ public class Worker {
 		
 	}
 
-	public Worker(String name, Double baseSalary, Department department) {
+	public Worker(String name, Double baseSalary, Department department, WorkerLevel workerLevel) {
 	
 		this.name = name;
 	

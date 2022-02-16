@@ -25,10 +25,12 @@ public class Program {
 		System.out.println("entre com os dados do trabalhador: ");
 		System.out.print("Nome: ");
 		String workerName = sc.nextLine();
+		System.out.print("entre com o nivel: ");
+		String workerLevel = sc.nextLine();
 		System.out.print("entre com o Salário base: ");
 		Double baseSalary = sc.nextDouble();
 		
-		Worker worker = new Worker(workerName, baseSalary, new Department(departmentName));
+		Worker worker = new Worker(workerName, baseSalary, new Department(departmentName), WorkerLevel.valueOf(workerLevel));
 		
 		System.out.print("how many contracts to this worker?: ");
 		int contractsNumber = sc.nextInt();
